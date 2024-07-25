@@ -7,4 +7,50 @@
         values (#{sysUser.id}, #{sysUser.userAccount}, #{sysUser.password}, #{sysUser.userName}, #{sysUser.userEmail}, #{sysUser.userPhone}, #{sysUser.userAddress},
                 #{sysUser.userProfile}, #{sysUser.userRole});
     </insert>
+    <select id="login" resultType="com.wsy.commonbackend.domain.vo.sysuser.UserInfoVO">
+        select id,
+               user_account,
+               user_name,
+               user_email,
+               user_phone,
+               user_address,
+               user_profile,
+               user_role,
+               user_status
+        from sys_user
+        where user_account = #{sysUser.userAccount}
+        and password = #{sysUser.password};
+    </select>
+    <select id="queryUser" resultType="com.wsy.commonbackend.domain.vo.sysuser.UserInfoVO">
+        select id,
+        user_account,
+        user_name,
+        user_email,
+        user_phone,
+        user_address,
+        user_profile,
+        user_role,
+        user_status
+        from sys_user
+        <where>
+            <if test="sysUser.userAccount != null and sysUser.userAccount != ''">
+                and user_account = #{sysUser.userAccount}
+            </if>
+            <if test="sysUser.userName != null and sysUser.userName != ''">
+                and user_name like concat(#{sysUser.userName},'%')
+            </if>
+            <if test="sysUser.userEmail != null and sysUser.userEmail != ''">
+                and user_email = #{sysUser.userEmail}
+            </if>
+            <if test="sysUser.userPhone != null and sysUser.userPhone != ''">
+                and user_phone = #{sysUser.userPhone}
+            </if>
+            <if test="sysUser.userRole != null">
+                and user_role = #{sysUser.userRole}
+            </if>
+            <if test="sysUser.userStatus != null">
+                and user_status = #{sysUser.userStatus}
+            </if>
+        </where>
+    </select>
 </mapper>

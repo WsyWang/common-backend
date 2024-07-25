@@ -32,7 +32,7 @@ public class ResultUtil {
      * @return 基本返回类型
      */
     public static <T> BaseResponse<T> error(ErrorCode errorCode) {
-        return new BaseResponse<>(errorCode, null);
+        return new BaseResponse<>(errorCode, errorCode.getMessage());
     }
 
     /**

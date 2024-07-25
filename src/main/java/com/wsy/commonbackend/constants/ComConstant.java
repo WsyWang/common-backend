@@ -29,4 +29,9 @@ public class ComConstant {
      */
     public static final int NORMAL = 1;
 
+    /**
+     * session中登录用户关键词
+     */
+    public static final String LOGIN_USER = "login_user";
+
 }
