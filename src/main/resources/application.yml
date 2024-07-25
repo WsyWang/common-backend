@@ -1,0 +1,32 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 8083
+  servlet:
+    # session存储时间
+    session:
+      timeout: 14400
+spring:
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sample
+    username: root
+    password: wsymynpy_
+
+#接口文档配置
+knife4j:
+  enable: true
+  openapi:
+    title: 后端通用模板示例接口文档
+    description: "本项目目前提供了关于用户的增删改查接口"
+    concat: wsy
+    version: v1.0
+    group:
+      test1:
+        group-name: 后端通用模板示例接口
+        api-rule: package
+        api-rule-resources:
+          - com.wsy.commonbackend.controller
+
+#加密盐值
+salt: wsydw
